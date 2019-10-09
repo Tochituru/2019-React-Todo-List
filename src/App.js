@@ -1,6 +1,7 @@
 import React from 'react';
-import { CssBaseline, Container, List, ListItem, ListItemText } from '@material-ui/core'
+import { CssBaseline, Container } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField'
+import TaskList from './components/TaskList'
 //import TaskList from './TaskList'
 
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
     if (e.key === 'Enter') {
       let value = this.state[e.target.name]
       let newTodo = [...this.state.todo, value]
+      //si quiero que la lista arranque por el último elemento, cambio el lugar de value
       this.setState({ todo: newTodo, task: '' })
       //console.log(this.state.todo); esto imprime uno anterior porque no es inmediato como en JS
 
@@ -35,13 +37,7 @@ class App extends React.Component {
           onChange={e => this.fieldHandler(e)}
           onKeyPress={e => this.enterHandler(e)}
           variant='outlined' />
-          <List>
-          {this.state.todo.map((e, i)=>( 
-          <ListItem button key={i}>
-          <ListItemText>{e}</ListItemText>
-          </ListItem>
-          ))}
-          </List>
+          <TaskList data={this.state.todo}/>
       </Container>
     )
   }
