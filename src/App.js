@@ -1,7 +1,7 @@
 import React from 'react';
-import { CssBaseline, Container } from '@material-ui/core'
+import { CssBaseline, Container, List, ListItem, ListItemText } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField'
-import TaskList from './TaskList'
+//import TaskList from './TaskList'
 
 class App extends React.Component {
   state = {
@@ -11,14 +11,14 @@ class App extends React.Component {
 
   fieldHandler(e) {
     this.setState({ task: e.target.value })
-    console.log(e.target.value);
+    //console.log(e.target.value);
   }
   enterHandler(e) {
     if (e.key === 'Enter') {
       let value = this.state[e.target.name]
       let newTodo = [...this.state.todo, value]
       this.setState({ todo: newTodo, task: '' })
-      console.log(this.state.todo); //esto imprime uno anterior porque no es inmediato como en JS
+      //console.log(this.state.todo); esto imprime uno anterior porque no es inmediato como en JS
 
     }
   }
@@ -35,7 +35,13 @@ class App extends React.Component {
           onChange={e => this.fieldHandler(e)}
           onKeyPress={e => this.enterHandler(e)}
           variant='outlined' />
-        <TaskList task={this.state.todo} />
+          <List>
+          {this.state.todo.map((e, i)=>( 
+          <ListItem button key={i}>
+          <ListItemText>{e}</ListItemText>
+          </ListItem>
+          ))}
+          </List>
       </Container>
     )
   }

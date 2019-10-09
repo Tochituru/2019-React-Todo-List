@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+
 
 const Task = ({ element }) => {
     return (
-        <li>{element}</li>)
+        <ul>{element}</ul>)
 }
 
 const TaskList = (props) => {
