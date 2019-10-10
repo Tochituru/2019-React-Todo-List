@@ -7,7 +7,7 @@ const TaskList = ({data}) => {
         <List>
             {data.map((e, i) => (
                 <ListItem button key={i}>
-                    <ListItemText>{e}</ListItemText>
+                    <ListItemText>{e.text}</ListItemText>
                 </ListItem>
             ))}
         </List>

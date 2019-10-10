@@ -16,13 +16,15 @@ class App extends React.Component {
   }
   enterHandler(e) {
     if (e.key === 'Enter') {
-      let value = this.state[e.target.name]
-      let newTodo = [...this.state.todo, value]
-      //si quiero que la lista arranque por el último elemento, cambio el lugar de value
-      this.setState({ todo: newTodo, task: '' })
-      //console.log(this.state.todo); esto imprime uno anterior porque no es inmediato como en JS
-
+      this.saveTask(e.target.name)
     }
+  }
+  saveTask(field){
+    let value = this.state[field]
+    let newTodo = [...this.state.todo, {text: value, status: 'pending'}]
+    //si quiero que la lista arranque por el último elemento, cambio el lugar de value
+    this.setState({[field]: '', "todo": newTodo })
+    //console.log(this.state.todo); esto imprime uno anterior porque no es inmediato como en JS
   }
 
   render() {
@@ -32,12 +34,12 @@ class App extends React.Component {
         <h1> Todo</h1>
         <TextField
           value={this.state.task}
-          label={'task'}
+          label={'la vida'}
           name={'task'}
           onChange={e => this.fieldHandler(e)}
           onKeyPress={e => this.enterHandler(e)}
           variant='outlined' />
-          <TaskList data={this.state.todo}/>
+          <TaskList data={[...this.state.todo]}/>
       </Container>
     )
   }
