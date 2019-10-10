@@ -10,21 +10,25 @@ class App extends React.Component {
     todo: []
   }
 
-  fieldHandler(e) {
+  fieldHandler = (e) => {
     this.setState({ task: e.target.value })
     //console.log(e.target.value);
   }
-  enterHandler(e) {
+  enterHandler = (e) => {
     if (e.key === 'Enter') {
       this.saveTask(e.target.name)
     }
   }
-  saveTask(field){
+  saveTask = (field) => {
     let value = this.state[field]
-    let newTodo = [...this.state.todo, {text: value, status: 'pending'}]
+    let newTodo = [...this.state.todo, { text: value, status: 'pending' }]
     //si quiero que la lista arranque por el último elemento, cambio el lugar de value
-    this.setState({[field]: '', "todo": newTodo })
+    this.setState({ [field]: '', "todo": newTodo })
     //console.log(this.state.todo); esto imprime uno anterior porque no es inmediato como en JS
+  }
+
+  changeStatus = (element) => {
+    console.log(element);
   }
 
   render() {
@@ -39,7 +43,7 @@ class App extends React.Component {
           onChange={e => this.fieldHandler(e)}
           onKeyPress={e => this.enterHandler(e)}
           variant='outlined' />
-          <TaskList data={[...this.state.todo]}/>
+        <TaskList data={[...this.state.todo]} changeStatus={this.changeStatus} />
       </Container>
     )
   }
