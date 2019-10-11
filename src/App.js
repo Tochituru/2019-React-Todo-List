@@ -1,8 +1,8 @@
 import React from 'react';
 import { CssBaseline, Container } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField'
-import nextId from 'react-id-generator';
 import TaskList from './components/TaskList'
+import IdGen from './helpers/idgenerator'
 
 class App extends React.Component {
   state = {
@@ -20,7 +20,7 @@ class App extends React.Component {
   }
   saveTask = (field) => {
     let value = this.state[field]
-    let newTodo = [...this.state.todo, { id: nextId('task-'), text: value, status: 'pending' }]
+    let newTodo = [...this.state.todo, { id: IdGen('task-'), text: value, status: 'pending' }]
     this.setState({ [field]: '', "todo": newTodo })
   }
 
