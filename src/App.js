@@ -14,7 +14,7 @@ class App extends React.Component {
     this.setState({ task: e.target.value });
   };
   enterHandler = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && this.state.task) {
       this.saveTask(e.target.name)
     }
   }
