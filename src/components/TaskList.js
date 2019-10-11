@@ -1,13 +1,18 @@
 import React from 'react';
 
-import { List, ListItem, ListItemText } from '@material-ui/core'
+import { List, ListItem, ListItemText, Button } from '@material-ui/core'
 
-const TaskList = ({data}) => {
+const TaskList = ({ title, data, changeStatus, deleteTask }) => {
     return (
         <List>
-            {data.map((e, i) => (
-                <ListItem button key={i}>
-                    <ListItemText>{e.text}</ListItemText>
+            <h2>{title}</h2>
+            {data.reverse().map((e, i) => (
+                <ListItem button key={i} >
+                    <ListItemText onClick={() => changeStatus(e.id)}>{e.text} </ListItemText>
+                    <Button variant={"contained"} onClick={() => deleteTask(e.id)}>
+                        X
+                    </Button>
+
                 </ListItem>
             ))}
         </List>
