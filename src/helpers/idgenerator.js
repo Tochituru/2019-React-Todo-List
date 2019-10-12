@@ -1,3 +1,3 @@
-const IdGen = (prefix) => `${prefix}Math.random().toString().replace('.', '')`;
+const IdGen = () => Math.random().toString().replace('.', '');
 
 export default IdGen

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { List, ListItem, ListItemText, Button } from '@material-ui/core'
 
-const TaskList = ({ title, data, changeStatus, deleteTask }) => {
+const TaskList = ({ title, data, changeStatus, deleteTask, editTask }) => {
     return (
         <List>
             <h2>{title}</h2>
@@ -12,7 +12,9 @@ const TaskList = ({ title, data, changeStatus, deleteTask }) => {
                     <Button variant={"contained"} onClick={() => deleteTask(e.id)}>
                         X
                     </Button>
-
+                    <Button variant={"contained"} onClick={() => editTask(e.id)}>
+                        Edit
+                    </Button>
                 </ListItem>
             ))}
         </List>
